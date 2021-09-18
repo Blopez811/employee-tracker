@@ -11,7 +11,6 @@ let questions = [
     },
     {
         when: (res) => {
-            console.log(res)
             if(res.selection == 'add a department') {
                  return true;
             } 
@@ -51,7 +50,6 @@ let questions = [
     },
     {
         when: (res) => {
-            console.log(res)
             if(res.selection == 'update an employee role') {
                  return true;
             } 
@@ -65,7 +63,13 @@ let questions = [
         choices: employeesArr
     },
    
-]
+];
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root', 
+    password:'Blopez@811', 
+    database: 'employee_tracker_db'
+})
 
 inquirer
     .prompt(
@@ -73,4 +77,11 @@ inquirer
     )
     .then((answer) => {
         console.log(answer);
+        if(answer.selection == 'view all departments') {
+            connection.query('SELECT * FROM department',
+            function(err, results) {
+                console.table(results);
+                
+            })
+        }
     })
