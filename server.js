@@ -98,8 +98,8 @@ const connection = mysql.createConnection({
             })
         };
         if(answer.selection == 'add a department') {
-            console.log(answer);
-            connection.query(`INSERT INTO department (name) VALUES (${JSON.stringify(answer)})`);
+            console.log(answer.department);
+            connection.query(`INSERT INTO department (name) VALUES ('${answer.department}');`);
             startApp();
         }
 
