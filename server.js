@@ -33,7 +33,33 @@ let questions = [
         },
         type: 'input',
         name: 'role',
-        message: 'What is the name, salary and dapartment for the new role?'
+        message: 'What is the name for the new role?'
+    },
+    {
+        when: (res) => {
+            if(res.selection == 'add a role') {
+                 return true;
+            } 
+            else {
+                return false;
+            }
+        },
+        type: 'input',
+        name: 'role',
+        message: 'What is the salary for the new role?'
+    },
+    {
+        when: (res) => {
+            if(res.selection == 'add a role') {
+                 return true;
+            } 
+            else {
+                return false;
+            }
+        },
+        type: 'input',
+        name: 'role',
+        message: 'What is the department for the new role?'
     },
     {
         when: (res) => {
