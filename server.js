@@ -128,6 +128,11 @@ const connection = mysql.createConnection({
             connection.query(`INSERT INTO department (name) VALUES ('${answer.department}');`);
             startApp();
         }
+        if(answer.selection == 'add a role') {
+            console.log(answer);
+            connection.query(`INSERT INTO role (title, department_id, salary) VALUES ('${answer.roleName}', ${answer.roleDepartment}, '${answer.roleSalary}');`);
+            startApp();
+        }
 
     })
 }
