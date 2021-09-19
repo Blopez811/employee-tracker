@@ -71,27 +71,34 @@ const connection = mysql.createConnection({
     database: 'employee_tracker_db'
 })
 
- function questionsPrompts() { inquirer
+ function startApp() { inquirer
     .prompt(
         questions
     )
     .then((answer) => {
-        console.log(answer);
         if(answer.selection == 'view all departments') {
             connection.query('SELECT * FROM department',
             function(err, results) {
                 console.table(results);
-                
+                startApp();
             })
         };
         if(answer.selection == 'view all roles') {
             connection.query('SELECT * FROM role',
             function(err, results) {
-                console.table(results);  
+                console.table(results);
+                startApp();  
+            })
+        };
+        if(answer.selection == 'view all employees') {
+            connection.query('SELECT * FROM employee',
+            function(err, results) {
+                console.table(results);
+                startApp();  
             })
         };
 
     })
 }
-    questionsPrompts()
+    startApp()
     
