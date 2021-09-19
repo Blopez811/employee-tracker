@@ -19,7 +19,7 @@ let questions = [
             }
         },
         type: 'input',
-        name: 'departament',
+        name: 'department',
         message: 'What is the name of the department you would like to add?'
     },
     {
