@@ -1,7 +1,12 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const cTable = require('console.table');
-let employeesArr = ['John', 'Sam', 'Bob'];
+//make function to view all employees
+function viewAllEmployees() {
+    connection.query(`SELECT first_name, last_name FROM employee;`);
+    
+}
+//make function to view all roles
 let questions = [
     {
         type: 'list',
@@ -125,7 +130,7 @@ let questions = [
         type: 'list',
         name: 'updateEmployeeRole',
         message: 'Select an employee you would like to update.',
-        choices: employeesArr
+        choices: [viewAllEmployees()]
     },
    
 ];
@@ -175,7 +180,10 @@ const connection = mysql.createConnection({
             connection.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${answer.employeeFName}', '${answer.employeeLName}', '${answer.employeeRole}', '${answer.employeeManager}');`);
             startApp();
         }
-
+       // if(//this bob users choice){
+        //prompt what role bob to have?
+    //}
+    //.then(update bobs role)
     })
 }
     startApp()
