@@ -91,7 +91,7 @@ const connection = mysql.createConnection({
             })
         };
         if(answer.selection == 'view all employees') {
-            connection.query('SELECT * FROM employee',
+            connection.query('SELECT * FROM employee LEFT JOIN role ON employee.role_id = role.id',
             function(err, results) {
                 console.table(results);
                 startApp();  
