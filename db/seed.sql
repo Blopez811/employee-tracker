@@ -4,8 +4,13 @@ USE employee_tracker_db;
 INSERT INTO department (name)
 VALUES 
 ('Sales'),
-('Human Resources'),
-('Enginering'),
+('Finance'),
+('Engineering'),
 ('Legal');
 
-INSERT INTO role (title, role_id, department_id, salary)
+INSERT INTO role (title, department_id, salary)
+VALUES
+('Salesperson', 1, 70000),
+('Accountant', 2, 75000),
+('Software Engineer', 3, 90000),
+('Lawyer', 4, 100000)

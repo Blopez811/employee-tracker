@@ -85,10 +85,9 @@ const connection = mysql.createConnection({
             })
         };
         if(answer.selection == 'view all roles') {
-            connection.query('SELECT * FROM roles',
+            connection.query('SELECT * FROM role',
             function(err, results) {
-                console.table(results);
-                
+                console.table(results);  
             })
         };
 
