@@ -71,8 +71,47 @@ let questions = [
             }
         },
         type: 'input',
-        name: 'employee',
-        message: 'What is the new employees first name, last name, role, and manager?'
+        name: 'employeeFName',
+        message: 'What is the new employees first name?'
+    },
+    {
+        when: (res) => {
+            if(res.selection == 'add an employee') {
+                 return true;
+            } 
+            else {
+                return false;
+            }
+        },
+        type: 'input',
+        name: 'employeeLName',
+        message: 'What is the new employees last name?'
+    },
+    {
+        when: (res) => {
+            if(res.selection == 'add an employee') {
+                 return true;
+            } 
+            else {
+                return false;
+            }
+        },
+        type: 'input',
+        name: 'employeeRole',
+        message: 'What is the new employees role?'
+    },
+    {
+        when: (res) => {
+            if(res.selection == 'add an employee') {
+                 return true;
+            } 
+            else {
+                return false;
+            }
+        },
+        type: 'input',
+        name: 'employeeManager',
+        message: 'Who is the new employees manager?'
     },
     {
         when: (res) => {
@@ -124,13 +163,16 @@ const connection = mysql.createConnection({
             })
         };
         if(answer.selection == 'add a department') {
-            console.log(answer.department);
             connection.query(`INSERT INTO department (name) VALUES ('${answer.department}');`);
             startApp();
-        }
+        };
         if(answer.selection == 'add a role') {
-            console.log(answer);
             connection.query(`INSERT INTO role (title, department_id, salary) VALUES ('${answer.roleName}', ${answer.roleDepartment}, '${answer.roleSalary}');`);
+            startApp();
+        };
+        if(answer.selection == 'add an employee') {
+            console.log(answer);
+            connection.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${answer.employeeFName}', '${answer.employeeLName}', '${answer.employeeRole}', '${answer.employeeManager}');`);
             startApp();
         }
 
