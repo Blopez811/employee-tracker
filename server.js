@@ -71,7 +71,7 @@ const connection = mysql.createConnection({
     database: 'employee_tracker_db'
 })
 
-inquirer
+ function questionsPrompts() { inquirer
     .prompt(
         questions
     )
@@ -85,3 +85,6 @@ inquirer
             })
         }
     })
+}
+    questionsPrompts()
+    
