@@ -1,3 +1,4 @@
+var connection;
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const cTable = require('console.table');
@@ -134,14 +135,14 @@ let questions = [
     },
    
 ];
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root', 
-    password:'Blopez@811', 
-    database: 'employee_tracker_db'
-})
 
- function startApp() { inquirer
+async function startApp() { inquirer
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root', 
+        password:'Blopez@811', 
+        database: 'employee_tracker_db'
+    })
     .prompt(
         questions
     )
