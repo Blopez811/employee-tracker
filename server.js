@@ -97,6 +97,11 @@ const connection = mysql.createConnection({
                 startApp();  
             })
         };
+        if(answer.selection == 'add a department') {
+            console.log(answer);
+            connection.query(`INSERT INTO department (name) VALUES (${JSON.stringify(answer)})`);
+            startApp();
+        }
 
     })
 }
