@@ -32,7 +32,7 @@ let questions = [
             }
         },
         type: 'input',
-        name: 'role',
+        name: 'roleName',
         message: 'What is the name for the new role?'
     },
     {
@@ -45,7 +45,7 @@ let questions = [
             }
         },
         type: 'input',
-        name: 'role',
+        name: 'roleSalary',
         message: 'What is the salary for the new role?'
     },
     {
@@ -58,7 +58,7 @@ let questions = [
             }
         },
         type: 'input',
-        name: 'role',
+        name: 'roleDepartment',
         message: 'What is the department for the new role?'
     },
     {
