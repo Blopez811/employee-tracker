@@ -1,12 +1,6 @@
 const inquirer = require('inquirer');
 const cTable = require('console.table');
 const connection = require('./db/connection');
-//make function to view all employees
-function viewAllEmployees() {
-    connection.query(`SELECT first_name, last_name  FROM employee;`);
-    
-}
-//make function to view all roles
 let questions = [
     {
         type: 'list',
@@ -146,7 +140,6 @@ let questions = [
         message: 'What is the new role you would like to update the employee with?',
         choices: ['Salesperson', 'Accountant', 'Software Engineer', 'Lawyer']
     },
-   
 ];
 
 
@@ -202,8 +195,6 @@ let questions = [
             });
             startApp()
         }
-       // if(//this bob users choice){   
-    //.then(update bobs role)
     })
 }
     startApp()
