@@ -15,6 +15,9 @@
   ## Installation
     Install inquirer and node and then run the server.js file with the command "node server.js" and answer the questions prompted to you to use the application.
 
+![23D8064B-C1BC-4268-8093-494610DCFCBE_1_105_c](https://user-images.githubusercontent.com/84877211/133953473-e491de70-1005-43bf-81c2-5b1ef3463cf2.jpeg)
+
+
   ## Usage
     Run node server.js in your terminal to access the application. Use the arrow keys to pick between various choices requested by the application.
 
