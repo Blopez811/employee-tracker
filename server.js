@@ -171,7 +171,7 @@ let questions = [
             })
         };
         if(answer.selection == 'view all employees') {
-            connection.query('SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id',
+            connection.query('SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary,  manager.first_name AS managerfname, manager.last_name AS managerlname FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee AS manager ON employee.manager_id = manager.id',
             function(err, results) {
                 console.table(results);
                 console.log(err);
