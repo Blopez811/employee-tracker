@@ -17,6 +17,7 @@
 
 ![23D8064B-C1BC-4268-8093-494610DCFCBE_1_105_c](https://user-images.githubusercontent.com/84877211/133953473-e491de70-1005-43bf-81c2-5b1ef3463cf2.jpeg)
 
+Here is a link to the video demo of the application! https://youtu.be/d7Q7CU3p4y8
 
   ## Usage
     Run node server.js in your terminal to access the application. Use the arrow keys to pick between various choices requested by the application.
