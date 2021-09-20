@@ -1,10 +1,9 @@
-var connection;
 const inquirer = require('inquirer');
-const mysql = require('mysql2');
 const cTable = require('console.table');
+const connection = require('./db/connection');
 //make function to view all employees
 function viewAllEmployees() {
-    connection.query(`SELECT first_name, last_name FROM employee;`);
+    connection.query(`SELECT first_name, last_name  FROM employee;`);
     
 }
 //make function to view all roles
@@ -128,21 +127,30 @@ let questions = [
                 return false;
             }
         },
+        type: 'input',
+        name: 'updateEmployeeName',
+        message: 'What is the employee id of the employee you want to update?',
+
+    },
+    {
+        when: (res) => {
+            if(res.selection == 'update an employee role') {
+                 return true;
+            } 
+            else {
+                return false;
+            }
+        },
         type: 'list',
         name: 'updateEmployeeRole',
-        message: 'Select an employee you would like to update.',
-        choices: [viewAllEmployees()]
+        message: 'What is the new role you would like to update the employee with?',
+        choices: ['Salesperson', 'Accountant', 'Software Engineer', 'Lawyer']
     },
    
 ];
 
-async function startApp() { inquirer
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root', 
-        password:'Blopez@811', 
-        database: 'employee_tracker_db'
-    })
+
+ function startApp() { inquirer
     .prompt(
         questions
     )
@@ -155,16 +163,18 @@ async function startApp() { inquirer
             })
         };
         if(answer.selection == 'view all roles') {
-            connection.query('SELECT * FROM role',
+            connection.query('SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department ON role.department_id = department.id',
             function(err, results) {
                 console.table(results);
+                console.log(err)
                 startApp();  
             })
         };
         if(answer.selection == 'view all employees') {
-            connection.query('SELECT * FROM employee LEFT JOIN role ON employee.role_id = role.id',
+            connection.query('SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id',
             function(err, results) {
                 console.table(results);
+                console.log(err);
                 startApp();  
             })
         };
@@ -181,9 +191,18 @@ async function startApp() { inquirer
             connection.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${answer.employeeFName}', '${answer.employeeLName}', '${answer.employeeRole}', '${answer.employeeManager}');`);
             startApp();
         }
-       // if(//this bob users choice){
-        //prompt what role bob to have?
-    //}
+        if(answer.selection == 'update an employee role') {
+            console.log(answer);
+            connection.query(`SELECT id FROM role WHERE title = '${answer.updateEmployeeRole}';`,
+            function(err, results) {
+                console.log(results[0].id);
+                console.log(err);
+                connection.query(`UPDATE employee SET role_id = ${results[0].id}
+                WHERE id = ${answer.updateEmployeeName};`)
+            });
+            startApp()
+        }
+       // if(//this bob users choice){   
     //.then(update bobs role)
     })
 }
